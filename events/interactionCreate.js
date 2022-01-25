@@ -1,4 +1,6 @@
 let hastebin = require('hastebin');
+let Telegram = require('telegrambot');
+let api = new Telegram('<TOKEN_TELEGRAM>')
 
 module.exports = {
   name: 'interactionCreate',
@@ -34,6 +36,11 @@ module.exports = {
           content: `Тикет создан! <#${c.id}>`,
           ephemeral: true
         });
+
+        api.invoke('sendMessage', { chat_id: "id", text: 'Внимание был создан тикет в Дискорде, пожалуйста скорее дайте ответ на него!'}, function (err, message) {
+          if (err) throw err;
+          console.log(message);
+        })
 
         const embed = new client.discord.MessageEmbed()
           .setColor('6d6ee8')
