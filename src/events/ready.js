@@ -1,3 +1,5 @@
+require("../deploy-commands");
+
 module.exports = {
   name: 'ready',
   async execute(client) {

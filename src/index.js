@@ -4,7 +4,7 @@ const {
   Collection,
   Intents
 } = require('discord.js');
-const config = require('./config.json');
+const config = require('../config.json');
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS],
@@ -15,14 +15,14 @@ client.discord = Discord;
 client.config = config;
 
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.data.name, command);
 };
 
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
@@ -46,4 +46,4 @@ client.on('interactionCreate', async interaction => {
   };
 });
 
-client.login(require('./token.json').token);
+client.login(require('../token.json').token);

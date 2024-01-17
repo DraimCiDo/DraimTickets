@@ -7,11 +7,11 @@ const {
 } = require('discord-api-types/v9');
 const {
   clientId
-} = require('./config.json');
-const t = require('./token.json');
+} = require('../config.json');
+const t = require('../token.json');
 
 const commands = [];
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
